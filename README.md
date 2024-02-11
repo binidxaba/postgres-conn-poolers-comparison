@@ -24,14 +24,14 @@ As a reminder, I used a VM with the following characteristics:
 
 The following changes were made to avoid socket reuse problems:
 
-```console
+```bash
 echo 1 > /proc/sys/net/ipv4/tcp_tw_reuse
 echo "1025 65535" > /proc/sys/net/ipv4/ip_local_port_range
 ```
 
 The following change was made to avoid reaching `fd` limit:
 
-```console
-sudo ulimit -n 10000
+```bash
+ulimit -n 10000
 ```
 
