@@ -1,0 +1,31 @@
+# This is an example of the most basic config
+# that will mimic what PgBouncer does in transaction mode with one server.
+
+[general]
+
+host = "0.0.0.0"
+port = 6432
+admin_username = "pgcat"
+admin_password = "pgcat"
+
+# If we should log client connections
+log_client_connections = false
+
+# If we should log client disconnections
+log_client_disconnections = false
+
+# Number of worker threads the Runtime will use (4 by default).
+worker_threads = 8
+
+[pools.postgresdb.users.0]
+username = "postgres"
+password = "hello123"
+pool_size = 100
+min_pool_size = 100
+pool_mode = "transaction"
+
+[pools.postgresdb.shards.0]
+servers = [
+  ["10.182.0.3", 5432, "primary"]
+]
+database = "postgres"
