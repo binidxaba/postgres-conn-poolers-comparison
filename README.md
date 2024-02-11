@@ -18,3 +18,20 @@ As a reminder, I used a VM with the following characteristics:
 | **Pgbouncer**        | v1.21                                         |
 | **Pgcat**            | v1.1.1                                        |
 | **Supavisor**        | v1.1.13                                       |
+
+
+## OS Configuration
+
+The following changes were made to avoid socket reuse problems:
+
+```bash
+echo 1 > /proc/sys/net/ipv4/tcp_tw_reuse
+echo "1025 65535" > /proc/sys/net/ipv4/ip_local_port_range
+```
+
+The following change was made to avoid reaching `fd` limit:
+
+```bash
+ulimit -n 10000
+```
+
